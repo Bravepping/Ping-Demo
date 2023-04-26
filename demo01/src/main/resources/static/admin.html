@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>叫号端</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+        button{
+            width: 100px;
+            height: 35px;
+            align-content: center;
+            margin: 10px;
+        }
+        .msg{
+            font-size: 30px;
+            text-align: center;
+        }
+        .ckuser{
+            font-size: 20px;
+        }
+        .top{
+            width: 40%;
+            margin-left: 30%;
+        }
+    </style>
+</head>
+<body>
+<div class="top">
+    <marquee behavior="" direction=""><div id="ckuser" class="ckuser"></div></marquee>
+</div>
+<div align="center">
+    <button type="button" onclick="start_jh()">叫号</button><br>
+    <button type="button" onclick="end_jh()">结束</button>
+</div>
+<br>
+<div id="msg" class="msg"></div>
+</body>
+<script>
+    function start_jh(){
+        $.ajax({
+            url: '/start_jh',
+            type: 'get',
+            async: true,
+            success:function (data){
+                // $("#msg").innerText = data
+                document.getElementById("msg").innerText = data
+            },
+            error:function (error){
+                document.getElementById("msg").innerText = "发生意料之外的错误！"
+            }
+        })
+    }
+
+    function end_jh(){
+        $.ajax({
+            url: '/end_jh',
+            type: 'get',
+            async: true,
+            success:function (data){
+                // $("#msg").innerText = data
+                document.getElementById("msg").innerText = data
+            },
+            error:function (error){
+                document.getElementById("msg").innerText = "发生意料之外的错误！"
+            }
+        })
+    }
+    window.onload = function (){
+        $.ajax({
+            url: '/getckuserxm',
+            type: 'get',
+            async: true,
+            success:function (data){
+                document.getElementById("ckuser").innerText = data
+            },
+            error:function (error){
+                document.getElementById("ckuser").innerText = "发生意料之外的错误！"
+            }
+        })
+    }
+</script>
+</html>

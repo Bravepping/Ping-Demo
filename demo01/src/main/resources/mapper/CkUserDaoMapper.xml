@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 会以namespace 和 id 在mapper 中查询具体的方法
+         resultType 表示返回对象的数据类型
+         parameterType 表示传入的数据对象
+         id  唯一标识，要与命名空间（抽象方法）中定义的方法名称一致
+ -->
+<mapper namespace="com.example.demo01.dao.CkUserDao">
+
+    <update id="insertCkXx" parameterType="com.example.demo01.pojo.User">
+        UPDATE demo1user set
+        ckbh = #{ckbh},
+        kssj = #{kssj},
+        jssj = #{jssj}
+        WHERE ckbh = " " and kssj = " "
+        ORDER BY bh asc LIMIT 1
+    </update>
+
+    <update id="ckUserStatus">
+        update demo1ck set
+        status = #{status}
+        where username = #{username}
+    </update>
+
+    <update id="endCkXx">
+        UPDATE demo1user set
+        jssj = #{jssj},
+        status = #{status}
+        WHERE ckbh = #{ckbh}
+        ORDER BY bh DESC LIMIT 1
+    </update>
+
+    <select id="loginCkUser" resultType="com.example.demo01.pojo.CkUser">
+        select * from demo1ck where username = #{username} and password = #{password}
+    </select>
+</mapper>

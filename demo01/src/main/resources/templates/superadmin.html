@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html   xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>超级管理员</title>
+    <!-- 新 Bootstrap5 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css">
+
+    <!--  popper.min.js 用于弹窗、提示、下拉菜单 -->
+    <script src="https://cdn.staticfile.org/popper.js/2.9.3/umd/popper.min.js"></script>
+
+    <!-- 最新的 Bootstrap5 核心 JavaScript 文件 -->
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.min.js"></script>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+    <style>
+        .top{
+            font-size: 30px;
+            text-align: center;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+<!--<div th:text="${userinfo}"></div>-->
+<div class="top">
+    查询结果如下
+</div>
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <table class="table table-bordered" >
+                <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>姓名</th>
+                    <th>身份证</th>
+                    <th>手机号</th>
+                    <th>创建时间</th>
+                    <th>窗口</th>
+                    <th>开始时间</th>
+                    <th>结束时间</th>
+                    <th>状态</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user:${userinfo}">
+                    <td th:text="${user.bh}"></td>
+                    <td th:text="${user.xm}"></td>
+                    <td th:text="${user.sfz}"></td>
+                    <td th:text="${user.phone}"></td>
+                    <td th:text="${user.cjsj}"></td>
+                    <td th:text="${user.ckbh}"></td>
+                    <td th:text="${user.kssj}"></td>
+                    <td th:text="${user.jssj}"></td>
+                    <td th:text="${user.status}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-1"></div>
+    </div>
+    <br>
+    <div align="center">
+        <form action="/export" method="get">
+            <button type="submit" class="btn btn-success">导出信息</button>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>

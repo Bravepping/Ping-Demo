@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>取号端</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <style>
+        input{
+            height: 20px;
+            width: 200px;
+            margin: 5px;
+        }
+        .msg{
+            text-align: center;
+            font-size: 25px;
+        }
+    </style>
+</head>
+<body>
+<div align="center" style="text-align: center">
+    姓&nbsp;&nbsp;&nbsp;&nbsp;名：<input name="xm" type="text" id="xm"><br>
+    身份证：<input name="sfz" type="text" id="sfz"><br>
+    手机号：<input name="phone" type="text" id="phone"><br>
+    <button type="submit" onclick="quhao()">取号</button>
+</div>
+<br>
+<div id="msg" class="msg"></div>
+</body>
+<script>
+
+    function quhao(){
+        var xm = document.getElementById('xm').value;
+        var sfz = document.getElementById('sfz').value;
+        var phone = document.getElementById('phone').value;
+        console.log(xm);
+        $.ajax({
+            url: '/one',
+            type: 'get',
+            async: true,
+            data: {
+                xm: xm,
+                sfz: sfz,
+                phone: phone
+            },
+            success:function (data){
+                document.getElementById("msg").innerText = data
+                document.getElementById('xm').value = ""
+                document.getElementById('sfz').value = ""
+                document.getElementById('phone').value = ""
+            },
+            error:function (error){
+                document.getElementById("msg").innerText = error
+            }
+        })
+    }
+</script>
+</html>
